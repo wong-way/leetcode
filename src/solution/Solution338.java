@@ -7,7 +7,6 @@ public class Solution338 {
     public int[] countBits(int num) {
         int bits[] = new int[num + 1];
         int flag = 0;
-        bits[0] = 0;
         for (int i = 1; i <= num; i++) {
             if ((i & i - 1) == 0) {
                 bits[i] = 1;
@@ -27,6 +26,11 @@ public class Solution338 {
 
         return res;
 
+    }
+    public int[] countBits2(int num){
+        int[] f = new int[num + 1];
+        for (int i=1; i<=num; i++) f[i] = f[i >> 1] + (i & 1);
+        return f;
     }
 
     public static void main(String[] args) {
