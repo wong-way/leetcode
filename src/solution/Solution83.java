@@ -20,6 +20,21 @@ public class Solution83 {
         }
         return newHead;
     }
+    public ListNode deleteDuplicates2(ListNode head) {
+        if(head==null) return head;
+        ListNode walker = head;
+        ListNode runner = head;
+        while(walker!=null){
+            if(runner.val !=walker.val)
+            {
+                runner.next = walker;
+                runner= runner.next;
+            }
+            walker = walker.next;
+        }
+        runner.next =null;
+        return head;
+    }
     public static ListNode deleteDuplicates1(ListNode head){
         if(head == null || head.next == null)
             return head;
