@@ -7,7 +7,7 @@ public class Solution547 {
             for (int j = 0; j < M[0].length; j++) {
 
                 if (M[i][j] == 1) {
-                    M[i][j] =0;
+                    M[i][j] = 0;
                     if (i == j) {
                         count++;
                     } else {
@@ -32,12 +32,34 @@ public class Solution547 {
             if (grid[i][j] == 1 && i != j) {
 
                 grid[i][j] = 0;
-                grid[i][i] =0;
+                grid[i][i] = 0;
                 helper(grid, j);
             }
 
         }
 
+    }
+
+
+    public void dfs(int[][] M, int[] visited, int i) {
+        for (int j = 0; j < M.length; j++) {
+            if (M[i][j] == 1 && visited[j] == 0) {
+                visited[j] = 1;
+                dfs(M, visited, j);
+            }
+        }
+    }
+
+    public int findCircleNum1(int[][] M) {
+        int[] visited = new int[M.length];
+        int count = 0;
+        for (int i = 0; i < M.length; i++) {
+            if (visited[i] == 0) {
+                dfs(M, visited, i);
+                count++;
+            }
+        }
+        return count;
     }
 
     public static void main(String[] args) {
